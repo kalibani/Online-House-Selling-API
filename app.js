@@ -10,6 +10,7 @@ const cors = require('cors');
 const mongoose = require('mongoose')
 const index = require('./routes/index');
 const users = require('./routes/users');
+const houses = require('./routes/houses')
 
 mongoose.connection.openUri(`mongodb://${process.env.USERNAMEDB}:${process.env.PASSWORDDB}@cluster0-shard-00-00-xrrgq.mongodb.net:27017,cluster0-shard-00-01-xrrgq.mongodb.net:27017,cluster0-shard-00-02-xrrgq.mongodb.net:27017/House-Online?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin`, (err) => {
  err ? console.log(err) : console.log('Database Connected to House-Online');
@@ -30,6 +31,7 @@ app.use(cors());
 
 app.use('/', index)
 app.use('/api/users', users)
+app.use('/api/house', houses)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

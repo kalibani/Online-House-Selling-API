@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 const bcrypt = require('bcrypt')
+const uniqueValidator = require('mongoose-unique-validator')
 
 let userSchema = new Schema({
   email:{
@@ -21,6 +22,8 @@ let userSchema = new Schema({
     required: true
   }
 })
+
+userSchema.plugin(uniqueValidator)
 
 userSchema.pre('save', function(callback) {
   let plainPassword = this.password
