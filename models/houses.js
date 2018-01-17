@@ -13,6 +13,12 @@ let houseSchema = new Schema({
   lokasi:{
     type: String
   },
+  latitude:{
+    type: Number
+  },
+  longitude:{
+    type: Number
+  },
   harga:{
     type: String
   },

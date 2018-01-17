@@ -17,6 +17,10 @@ let userSchema = new Schema({
     type: String,
     required: true
   },
+  fullname:{
+    type: String,
+    required: true
+  },
   kontak:{
     type: String,
     required: true

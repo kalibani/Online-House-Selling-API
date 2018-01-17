@@ -31,7 +31,8 @@ class UserCtrl {
             let payload = {
               userId: dataUser._id,
               email: dataUser.email,
-              username: dataUser.username
+              username: dataUser.username,
+              fullname: dataUser.fullname
             }
             let token = jwt.sign(payload, process.env.SECRET)
             res.status(200).json({

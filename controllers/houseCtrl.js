@@ -18,6 +18,8 @@ class HouseAPI {
       nama: req.body.nama,
       pemilik: req.decoded.userId,
       lokasi: req.body.lokasi,
+      latitude: req.body.latitude,
+      longitude: req.body.longitude,
       harga: req.body.harga,
       image: req.body.image,
       detail: req.body.detail
@@ -53,11 +55,13 @@ class HouseAPI {
         if (data.pemilik == req.decoded.userId) {
           data.nama = req.body.nama
           data.lokasi = req.body.lokasi
+          data.latitude = req.body.latitude
+          data.longitude = req.body.longitude
           data.harga = req.body.harga
           data.image = req.body.image
           data.detail = req.body.detail
           data.save().then(updatedHouse => {
-            res.status(200).json({message: 'Update Success', data: updatedHouse})
+            res.status(200).json({message: 'Update Succes!', data: updatedHouse})
           }).catch(err => {
             res.status(500).send(err)
           })
@@ -70,6 +74,8 @@ class HouseAPI {
       let update = {
         nama : req.body.nama,
         lokasi : req.body.lokasi,
+        latitude: req.body.latitude,
+        longitude: req.body.longitude,
         harga : req.body.harga,
         detail : req.body.detail
       }
@@ -89,7 +95,7 @@ class HouseAPI {
 
   static deleteHouse(req, res){
     House.findById(req.params.id).then(data => {
-      if (data.posted_by == req.decoded.userId) {
+      if (data.pemilik == req.decoded.userId) {
         data.remove().then(result => {
           res.status(200).json({ message: "House successfully deleted!", data: result })
         }).catch(err => {
